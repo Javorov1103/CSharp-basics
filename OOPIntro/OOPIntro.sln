@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPIntro", "OOPIntro\OOPIntro.csproj", "{602AC715-087E-4B0B-9745-8542F08D9A09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOPIntro", "OOPIntro\OOPIntro.csproj", "{602AC715-087E-4B0B-9745-8542F08D9A09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 1", "Task 1\Task 1.csproj", "{EF5B0D3E-3CE1-4EFB-9E49-F12874108E71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{9E727BF6-2E13-47EE-B8CB-9252417F491E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InheritanceDemo", "InheritanceDemo\InheritanceDemo.csproj", "{E59785A5-DA86-409F-AA07-D607B5C79F2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{602AC715-087E-4B0B-9745-8542F08D9A09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{602AC715-087E-4B0B-9745-8542F08D9A09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{602AC715-087E-4B0B-9745-8542F08D9A09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF5B0D3E-3CE1-4EFB-9E49-F12874108E71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF5B0D3E-3CE1-4EFB-9E49-F12874108E71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF5B0D3E-3CE1-4EFB-9E49-F12874108E71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF5B0D3E-3CE1-4EFB-9E49-F12874108E71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E727BF6-2E13-47EE-B8CB-9252417F491E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E727BF6-2E13-47EE-B8CB-9252417F491E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E727BF6-2E13-47EE-B8CB-9252417F491E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E727BF6-2E13-47EE-B8CB-9252417F491E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E59785A5-DA86-409F-AA07-D607B5C79F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E59785A5-DA86-409F-AA07-D607B5C79F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E59785A5-DA86-409F-AA07-D607B5C79F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E59785A5-DA86-409F-AA07-D607B5C79F2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
