@@ -6,7 +6,15 @@ namespace InheritanceDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+           
+            Fish goldenFish = new Fish();
+            Fish blueFish = new Fish();
+            GoldenFish golden = new GoldenFish();
+
+            Dog dog = new Dog();
+
+          
+
         }
     }
 }

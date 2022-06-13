@@ -4,11 +4,13 @@ using System.Text;
 
 namespace InheritanceDemo
 {
-    public class Animal
+    public abstract class Animal
     {
         public int NumberOfLegs { get; set; }
 
         public int AverageLifeLenght { get; set; }
+
+
 
 
     }

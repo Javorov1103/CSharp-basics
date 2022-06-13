@@ -16,5 +16,10 @@ namespace InheritanceDemo
             private set { myVar = value; }
         }
 
+
+        private void SetMyProperty()
+        {
+            MyProperty = 3;
+        }
     }
 }

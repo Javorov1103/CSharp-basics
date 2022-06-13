@@ -36,9 +36,28 @@ public class Student
 
     public int CourseId
     {
-        get { return courseId; }
-        set { courseId = value; }
+        get 
+        {
+            if(courseId > 5)
+            {
+                return 4;
+            }
+            else
+            {
+                return 6;
+            }
+            return courseId * 5; 
+        }
+        set {
+            if(value > 6)
+            {
+                value *= 6;
+            }
+            courseId = value; 
+        }
     }
+
+    public int MyProperty { get; set; }
 
     public DateTime GetBirthDate()
     {
