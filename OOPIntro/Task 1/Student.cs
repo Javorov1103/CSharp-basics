@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-public class Student
+public class Student 
 {
     private string name;
     private string egn;
     private int[] marks;
     private int courseId;
+
+    public Student()
+    {
+
+    }
     public Student(string name)
     {
         marks = new int[10];
@@ -112,6 +118,14 @@ public class Student
     public bool DoesStudentHasWeakMakes()
     {
         return marks.Any(x => x < 3);
+    }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if(Name.Length > 25)
+        {
+            yield return new ValidationResult("Name cannot be less than 25 symbols");
+        }
     }
 }
 

@@ -4,6 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        Student newStudent = new Student();
+        
         Student student = new Student("Kalin");
         student.EGN = "9103118977";
 

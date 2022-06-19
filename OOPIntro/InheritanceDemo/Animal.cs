@@ -10,7 +10,12 @@ namespace InheritanceDemo
 
         public int AverageLifeLenght { get; set; }
 
+        public virtual void MyVirtualMethod()
+        {
+            Console.WriteLine("animal virtual method");
+        }
 
+        public abstract void MyAbstractMethod();
 
 
     }

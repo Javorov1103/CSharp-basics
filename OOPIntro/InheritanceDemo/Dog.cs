@@ -4,9 +4,27 @@ using System.Text;
 
 namespace InheritanceDemo
 {
-    class Dog : Animal
+    class Dog : Animal, IMovable
     {
-        public decimal SpeedOfRunning { get; set; }
+        private decimal speedOfRuning;
+        public decimal SpeedOfRunning
+        { 
+            get 
+            { 
+                    return speedOfRuning;
+            }
+            set 
+            { 
+                if(value > 20)
+                {
+                    FastDog = true;
+                }
+
+                speedOfRuning = value;
+            }
+        }
+
+        public bool FastDog { get; set; } = false;
 
         private int myVar;
 
@@ -21,5 +39,17 @@ namespace InheritanceDemo
         {
             MyProperty = 3;
         }
+
+        public void Move()
+        {
+            Console.WriteLine("Dog is moving");
+        }
+
+        public override void MyAbstractMethod()
+        {
+            Console.WriteLine("Dog abstact method");
+        }
+
+        
     }
 }

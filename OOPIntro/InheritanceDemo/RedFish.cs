@@ -4,8 +4,8 @@ using System.Text;
 
 namespace InheritanceDemo
 {
-    class GoldenFish : Fish
+    class RedFish : Fish
     {
-        public int CustomGoldenFishProperty { get; set; }
+        public int CustomRedFishPRoperty { get; set; }
     }
 }

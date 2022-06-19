@@ -4,8 +4,8 @@ using System.Text;
 
 namespace InheritanceDemo
 {
-    class GoldenFish : Fish
+    public interface IMovable
     {
-        public int CustomGoldenFishProperty { get; set; }
+        public void Move();
     }
 }
