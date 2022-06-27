@@ -18,9 +18,9 @@ namespace InheritanceDemo
             throw new NotImplementedException();
         }
 
-        public override void MyVirtualMethod()
-        {
-            Console.WriteLine("Fish virtual method");
-        }
+        //public override void MyVirtualMethod()
+        //{
+        //    Console.WriteLine("Fish virtual method");
+        //}
     }
 }

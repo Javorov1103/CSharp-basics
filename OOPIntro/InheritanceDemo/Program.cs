@@ -28,19 +28,30 @@ namespace InheritanceDemo
 
             //dog.Move();
             //fish.Move();
+            Dog dog = new Dog();
+            Fish fish = new Fish();
 
-            Dog kuche = new Dog();
-            kuche.SpeedOfRunning = 21;
+            List<Animal> animals = new List<Animal>();
+            animals.Add(dog);
+            animals.Add(fish);
 
-            Dog kuche2 = new Dog();
-            kuche2.SpeedOfRunning = 14;
+            foreach (var animal in animals)
+            {
+                animal.MyVirtualMethod();
+            }
 
-            var type = typeof(Dog);
-            var props = type.GetProperties();
-            var fields = type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            //Dog kuche = new Dog();
+            //kuche.SpeedOfRunning = 21;
+
+            //Dog kuche2 = new Dog();
+            //kuche2.SpeedOfRunning = 14;
+
+            //var type = typeof(Dog);
+            //var props = type.GetProperties();
+            //var fields = type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
            
-            Console.WriteLine($"kuche e byrzo: {kuche.FastDog}");
-            Console.WriteLine($"kuche2 e byrzo: {kuche2.FastDog}");
+            //Console.WriteLine($"kuche e byrzo: {kuche.FastDog}");
+            //Console.WriteLine($"kuche2 e byrzo: {kuche2.FastDog}");
 
         }
     }

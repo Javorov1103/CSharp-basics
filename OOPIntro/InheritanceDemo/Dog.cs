@@ -45,11 +45,16 @@ namespace InheritanceDemo
             Console.WriteLine("Dog is moving");
         }
 
-        public override void MyAbstractMethod()
+        //public override void MyAbstractMethod()
+        //{
+        //    Console.WriteLine("Dog abstact method");
+        //}
+
+        public override void MyVirtualMethod()
         {
-            Console.WriteLine("Dog abstact method");
+           Console.WriteLine("dog virtual method");
         }
 
-        
+
     }
 }
