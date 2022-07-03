@@ -52,7 +52,15 @@ namespace Task_2
 
            students.Sort();
 
+            foreach (var student in students)
+            {
+                Console.WriteLine(student);
+            }
 
+            //if(students[0].CompareTo(students[1]) > 0)
+            //{
+            //    Console.WriteLine();
+            //}
         }
     }
 }

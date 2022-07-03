@@ -23,6 +23,7 @@ namespace Task_2
 
         public int CompareTo(object obj)
         {
+           
             Student otherStudent = (Student)obj;
 
             if (mark < otherStudent.mark)
@@ -37,6 +38,11 @@ namespace Task_2
             {
                 return 0;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} {Mark}";
         }
     }
 }
