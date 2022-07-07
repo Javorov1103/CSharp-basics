@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Task_8.Clients;
+using Task_8.Contracts;
 
 namespace Task_8.Accounts
 {
-    public abstract class BankAccount
+    public abstract class BankAccount: IBankAccount
     {
         private Client client;
         private decimal balance;

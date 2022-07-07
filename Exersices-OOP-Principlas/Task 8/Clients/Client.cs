@@ -7,5 +7,7 @@ namespace Task_8.Clients
     public class Client
     {
         public string TypeOfClient { get; set; }
+
+        public string Name { get; set; }
     }
 }
