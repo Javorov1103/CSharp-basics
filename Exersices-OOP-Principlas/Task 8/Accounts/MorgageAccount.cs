@@ -8,7 +8,7 @@ namespace Task_8
 {
     class MorgageAccount : BankAccount, IInputable
     {
-        public void Input()
+        public void Input(decimal amount)
         {
             throw new NotImplementedException();
         }

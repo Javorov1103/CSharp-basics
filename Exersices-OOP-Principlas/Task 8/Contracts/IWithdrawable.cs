@@ -6,6 +6,6 @@ namespace Task_8.Contracts
 {
     public interface IWithdrawable
     {
-        public void Withdraw();
+        public void Withdraw(decimal amount);
     }
 }

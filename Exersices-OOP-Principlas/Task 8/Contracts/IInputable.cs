@@ -6,6 +6,6 @@ namespace Task_8.Contracts
 {
     public interface IInputable
     {
-        public void Input();
+        public void Input(decimal amount);
     }
 }

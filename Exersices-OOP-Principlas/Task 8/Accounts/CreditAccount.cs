@@ -8,9 +8,9 @@ namespace Task_8
 {
     class CreditAccount :BankAccount, IInputable
     {
-        public void Input()
+        public void Input(decimal amount)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"In my accoutn just inputed {amount} lv");
         }
 
         public override decimal CalculateInterestAmount(int monthCount)
