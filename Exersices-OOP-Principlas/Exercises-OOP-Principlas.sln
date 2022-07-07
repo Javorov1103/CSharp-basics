@@ -5,15 +5,17 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 2", "Task 2\Task 2.csproj", "{F471AE0E-C67D-4BD2-8C0D-AC77A62E84E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 4", "Task 4\Task 4.csproj", "{1302EF02-C2B8-4FC3-8AAE-465F0170EC22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 4", "Task 4\Task 4.csproj", "{1302EF02-C2B8-4FC3-8AAE-465F0170EC22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 5", "Task 5\Task 5.csproj", "{F5A8AB13-7E89-477A-9D55-A684DEF8206A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 5", "Task 5\Task 5.csproj", "{F5A8AB13-7E89-477A-9D55-A684DEF8206A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 6", "Task 6\Task 6.csproj", "{B95DFB43-4A27-4955-80C6-365AA382A08B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 6", "Task 6\Task 6.csproj", "{B95DFB43-4A27-4955-80C6-365AA382A08B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 8", "Task 8\Task 8.csproj", "{266A35F8-1EFD-4C48-BBA0-D94F0824FA60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 8", "Task 8\Task 8.csproj", "{266A35F8-1EFD-4C48-BBA0-D94F0824FA60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{41EF4440-F5EC-4BE0-86C8-91E2F50C3111}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{41EF4440-F5EC-4BE0-86C8-91E2F50C3111}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp1", "WindowsFormsApp1\WindowsFormsApp1.csproj", "{8F3564C8-211A-4C63-9780-AEA5B34B7FF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{41EF4440-F5EC-4BE0-86C8-91E2F50C3111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41EF4440-F5EC-4BE0-86C8-91E2F50C3111}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41EF4440-F5EC-4BE0-86C8-91E2F50C3111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F3564C8-211A-4C63-9780-AEA5B34B7FF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F3564C8-211A-4C63-9780-AEA5B34B7FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F3564C8-211A-4C63-9780-AEA5B34B7FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F3564C8-211A-4C63-9780-AEA5B34B7FF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
