@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Hell.Entities.Items;
+using Hell.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 
-public class AbstractHero : IHero, IComparable<AbstractHero>
+public abstract class AbstractHero : IHero, IComparable<AbstractHero>
 {
     private IInventory inventory;
+    private string name;
     private long strength;
     private long agility;
     private long intelligence;
@@ -24,7 +27,7 @@ public class AbstractHero : IHero, IComparable<AbstractHero>
         this.inventory = new HeroInventory();
     }
 
-    public string Name { get; private set; }
+    public string Name { get { return name; } private set { name = value; } }
 
     public long Strength
     {

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Hell.Entities.Commands;
+using Hell.Interfaces;
+using System.Collections.Generic;
 
 public class QuitCommand : AbstractCommand
 {
@@ -10,7 +12,7 @@ public class QuitCommand : AbstractCommand
     {
     }
 
-    public virtual string Execute()
+    public override string Execute()
     {
         return base.Manager.Quit(this.ArgsList);
     }
