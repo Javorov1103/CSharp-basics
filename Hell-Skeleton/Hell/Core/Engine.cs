@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Hell.Entities.Commands;
+using Hell.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 public class Engine
 {
-    private InputReader reader;
-    private OutputWriter writer;
+    private IInputReader reader;
+    private IOutputWriter writer;
     private HeroManager heroManager;
 
-    public Engine(InputReader reader, OutputWriter writer, HeroManager heroManager)
+    public Engine(IInputReader reader, IOutputWriter writer, HeroManager heroManager)
     {
         this.reader = reader;
         this.writer = writer;
@@ -28,23 +30,23 @@ public class Engine
         }
     }
 
-    private static List<string> parseInput(string input)
+    private List<string> parseInput(string input)
     {
         return input.Split(' ').ToList();
     }
 
-    private static string processInput(List<string> arguments)
+    private string processInput(List<string> arguments)
     {
         string command = arguments[0];
         arguments.RemoveAt(0);
 
         Type commandType = Type.GetType(command + "Command");
         var constructor = commandType.GetConstructor(new Type[] { typeof(IList<string>), typeof(IManager) });
-        Command cmd = (Command)constructor.Invoke(new object[] { arguments, this.heroManager });
+        AbstractCommand cmd = (AbstractCommand)constructor.Invoke(new object[] { arguments, this.heroManager });
         return cmd.Execute();
     }
 
-    private static bool ShouldEnd(string inputLine)
+    private bool ShouldEnd(string inputLine)
     {
         return inputLine.Equals("Quit");
     }

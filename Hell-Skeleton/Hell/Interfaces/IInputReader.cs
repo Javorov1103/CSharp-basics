@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hell.Interfaces
 {
-    class IInputReader
+    public interface IInputReader
     {
+        string ReadLine();
     }
 }

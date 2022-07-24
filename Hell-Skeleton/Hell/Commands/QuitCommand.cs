@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class QuitCommand : AbstractCommand
 {
-    protected QuitCommand()
-    {
+    //protected QuitCommand()
+    //{
 
-    }
-    public QuitCommand(List<string> args, IManager manager)
+    //}
+    public QuitCommand(List<string> args, IManager manager) : base (args, manager)
     {
     }
 

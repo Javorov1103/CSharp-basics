@@ -1,4 +1,5 @@
-﻿using Hell.Interfaces;
+﻿using Hell.Entities.Items;
+using Hell.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -56,17 +57,17 @@ public class HeroInventory : IInventory
     {
         foreach (IRecipe recipe in this.recipeItems.Values)
         {
-            List<string> requiredItems = new List<string>(recipe.RequiredItems);
+      
 
             foreach (IItem commonItem in this.commonItems.Values)
             {
-                if (requiredItems.Contains(commonItem.Name))
+                if (recipe.RequiredItems.Contains(commonItem.Name))
                 {
-                    requiredItems.Remove(commonItem.Name);
+                    recipe.RequiredItems.Remove(commonItem.Name);
                 }
             }
 
-            if (requiredItems.Count == 0)
+            if (recipe.RequiredItems.Count == 0)
             {
                 this.CombineRecipe(recipe);
             }

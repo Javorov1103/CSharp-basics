@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hell.Interfaces
 {
-    public interface IRecipe : IItem
+    public interface IOutputWriter
     {
+        void WriteLine(string line);
 
-        IList<string> RequiredItems { get; set; }
+        void WriteLine(string format, params string[] args);
     }
 }

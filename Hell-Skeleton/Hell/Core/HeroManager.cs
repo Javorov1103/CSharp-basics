@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Hell.Entities;
+using Hell.Entities.Commands;
+using Hell.Entities.Items;
+using Hell.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 
-public class HeroManager
+public class HeroManager : IManager
 {
     public Dictionary<string, IHero> heroes;
 
@@ -32,7 +36,7 @@ public class HeroManager
         return result;
     }
 
-    public string AddItemToHero(List<String> arguments, Hero hero)
+    public string AddItemToHero(List<String> arguments, IHero hero)
     {
         string result = null;
 
@@ -98,9 +102,14 @@ public class HeroManager
     {
         //това не трябва да го пипаме, че ако го махнем ще ни счупи цялата логика
         var l = new List<string>();
-        var m = new Manager();
+        var m = new HeroManager();
         HeroCommand cmd = new HeroCommand(l, m);
         var str = "Execute";
         Console.WriteLine(str);
+    }
+
+    public string Quit(IList<string> args)
+    {
+        throw new NotImplementedException();
     }
 }

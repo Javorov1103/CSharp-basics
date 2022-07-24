@@ -1,4 +1,6 @@
-﻿public class StartUp
+﻿using Hell.Interfaces;
+
+public class StartUp
 {
     public static void Main()
     {

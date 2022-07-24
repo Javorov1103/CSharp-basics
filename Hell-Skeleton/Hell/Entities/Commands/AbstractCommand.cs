@@ -13,8 +13,12 @@ namespace Hell.Entities.Commands
 
         private IList<string> argsList;
 
-      
 
+        public AbstractCommand(IList<string> args, IManager manager)
+        {
+            this.manager = manager;
+            this.argsList = args;
+        }
 
         public IManager Manager
         {

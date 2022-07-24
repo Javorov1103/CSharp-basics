@@ -72,7 +72,7 @@ public abstract class AbstractHero : IHero, IComparable<AbstractHero>
     //REFLECTION
     public ICollection<IItem> Items { get; }
 
-    public void AddRecipe(Recipe recipe)
+    public void AddRecipe(RecipeItem recipe)
     {
         this.inventory.AddRecipeItem(recipe);
     }
