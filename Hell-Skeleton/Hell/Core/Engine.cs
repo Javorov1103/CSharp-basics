@@ -1,16 +1,17 @@
-﻿using Hell.Entities.Commands;
-using Hell.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
-public class Engine
+public class Engine : IEngine
 {
+    private const string TerminatingCommand = "Quit";
+
     private IInputReader reader;
     private IOutputWriter writer;
-    private HeroManager heroManager;
+    private IManager heroManager;
 
-    public Engine(IInputReader reader, IOutputWriter writer, HeroManager heroManager)
+    public Engine(IInputReader reader, IOutputWriter writer, IManager heroManager)
     {
         this.reader = reader;
         this.writer = writer;
@@ -24,30 +25,45 @@ public class Engine
         while (isRunning)
         {
             string inputLine = this.reader.ReadLine();
-            List<string> arguments = this.parseInput(inputLine);
-            this.writer.WriteLine(this.processInput(arguments));
+            IList<string> arguments = this.ParseInput(inputLine);
+
+            this.writer.WriteLine(this.ProcessInput(arguments));
+
             isRunning = !this.ShouldEnd(inputLine);
         }
     }
 
-    private List<string> parseInput(string input)
+    private IList<string> ParseInput(string input)
     {
-        return input.Split(' ').ToList();
+        return input
+              .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+              .ToList();
     }
 
-    private string processInput(List<string> arguments)
+    private string ProcessInput(IList<string> arguments)
     {
         string command = arguments[0];
         arguments.RemoveAt(0);
 
-        Type commandType = Type.GetType(command + "Command");
-        var constructor = commandType.GetConstructor(new Type[] { typeof(IList<string>), typeof(IManager) });
-        AbstractCommand cmd = (AbstractCommand)constructor.Invoke(new object[] { arguments, this.heroManager });
+        // Invoke Command
+        Type commandType = Assembly
+                          .GetExecutingAssembly()
+                          .GetTypes()
+                          .FirstOrDefault(t => t.Name == command + "Command");
+        var commandParams = new object[] { arguments, this.heroManager };
+        ICommand cmd = (ICommand)Activator.CreateInstance(commandType, commandParams);
+
+        //Type commandType = Type.GetType(command + "Command");
+        //var constructor = commandType.GetConstructor(
+        //                new Type[] { typeof(IList<string>), typeof(IManager) });
+        //var commandParams = new object[] { arguments, this.heroManager };
+        //ICommand cmd = (ICommand)constructor.Invoke(commandParams);
+
         return cmd.Execute();
     }
 
     private bool ShouldEnd(string inputLine)
     {
-        return inputLine.Equals("Quit");
+        return inputLine.Equals(TerminatingCommand);
     }
 }

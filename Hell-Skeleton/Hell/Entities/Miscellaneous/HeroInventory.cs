@@ -1,6 +1,4 @@
-﻿using Hell.Entities.Items;
-using Hell.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 public class HeroInventory : IInventory
@@ -43,13 +41,13 @@ public class HeroInventory : IInventory
 
     public void AddCommonItem(IItem item)
     {
-        this.commonItems.Add(item.Name, item);
+        this.commonItems[item.Name] = item;
         this.CheckRecipes();
     }
 
     public void AddRecipeItem(IRecipe recipe)
     {
-        this.recipeItems.Add(recipe.Name, recipe);
+        this.recipeItems[recipe.Name] = recipe;
         this.CheckRecipes();
     }
 
@@ -57,17 +55,17 @@ public class HeroInventory : IInventory
     {
         foreach (IRecipe recipe in this.recipeItems.Values)
         {
-      
+            List<string> requiredItems = new List<string>(recipe.RequiredItems);
 
             foreach (IItem commonItem in this.commonItems.Values)
             {
-                if (recipe.RequiredItems.Contains(commonItem.Name))
+                if (requiredItems.Contains(commonItem.Name))
                 {
-                    recipe.RequiredItems.Remove(commonItem.Name);
+                    requiredItems.Remove(commonItem.Name);
                 }
             }
 
-            if (recipe.RequiredItems.Count == 0)
+            if (requiredItems.Count == 0)
             {
                 this.CombineRecipe(recipe);
             }
@@ -82,12 +80,13 @@ public class HeroInventory : IInventory
             this.commonItems.Remove(item);
         }
 
-        IItem newItem = new CommonItem(recipe.Name,
-            recipe.StrengthBonus,
-            recipe.AgilityBonus,
-            recipe.IntelligenceBonus,
-            recipe.HitPointsBonus,
-            recipe.DamageBonus);
+        IItem newItem = new CommonItem(
+                            recipe.Name,
+                            recipe.StrengthBonus,
+                            recipe.AgilityBonus,
+                            recipe.IntelligenceBonus,
+                            recipe.HitPointsBonus,
+                            recipe.DamageBonus);
 
         this.commonItems.Add(newItem.Name, newItem);
     }

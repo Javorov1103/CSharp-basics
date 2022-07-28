@@ -1,5 +1,4 @@
-﻿using Hell.Interfaces;
-using System;
+﻿using System;
 
 public class ConsoleReader : IInputReader
 {

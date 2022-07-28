@@ -1,19 +1,15 @@
-﻿using Hell.Entities.Commands;
-using Hell.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class QuitCommand : AbstractCommand
 {
-    //protected QuitCommand()
-    //{
-
-    //}
-    public QuitCommand(List<string> args, IManager manager) : base (args, manager)
+    public QuitCommand(IList<string> args, IManager manager)
+        : base(args, manager)
     {
     }
 
     public override string Execute()
     {
-        return base.Manager.Quit(this.ArgsList);
+        var result = this.Manager.Quit(this.ArgsList);
+        return result;
     }
 }

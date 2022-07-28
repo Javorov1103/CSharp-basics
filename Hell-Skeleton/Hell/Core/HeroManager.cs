@@ -1,32 +1,40 @@
-﻿using Hell.Entities;
-using Hell.Entities.Commands;
-using Hell.Entities.Items;
-using Hell.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 public class HeroManager : IManager
 {
-    public Dictionary<string, IHero> heroes;
+    private Dictionary<string, IHero> heroes;
 
-    public string AddHero(List<String> arguments)
+    public HeroManager()
+    {
+        this.heroes = new Dictionary<string, IHero>();
+    }
+
+    public string AddHero(IList<string> arguments)
     {
         string result = null;
 
+        // Parse input
         string heroName = arguments[0];
         string heroType = arguments[1];
 
         try
         {
-            Type clazz = Type.GetType(heroType);
-            var constructors = clazz.GetConstructors();
-            IHero hero = (IHero) constructors[0].Invoke(new object[] {heroName});
+            // Create Hero
+            Type typeOfHero = Type.GetType(heroType);
+            var constructors = typeOfHero.GetConstructors();
+            var heroParams = new object[] { heroName };
 
+            IHero hero = (IHero)constructors[0].Invoke(heroParams);
 
-            result = string.Format($"Created {heroType} - {hero.GetType().Name}");
+            // Add Hero
+            this.heroes[hero.Name] = hero;
+
+            // Get Result
+            result = string.Format(Constants.HeroCreateMessage,
+                                   hero.GetType().Name, hero.Name);
         }
         catch (Exception e)
         {
@@ -36,11 +44,11 @@ public class HeroManager : IManager
         return result;
     }
 
-    public string AddItemToHero(List<String> arguments, IHero hero)
+    public string AddCommonItem(IList<string> arguments)
     {
         string result = null;
 
-        //Ма те много бе!
+        // Parse input
         string itemName = arguments[0];
         string heroName = arguments[1];
         int strengthBonus = int.Parse(arguments[2]);
@@ -49,67 +57,101 @@ public class HeroManager : IManager
         int hitPointsBonus = int.Parse(arguments[5]);
         int damageBonus = int.Parse(arguments[6]);
 
-        CommonItem newItem = new CommonItem(itemName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus,
-            damageBonus);
-        //тука трябваше да добавя към hero ама промених едно нещо и то много неща се счупиха и реших просто да не добавям
+        // Create Item
+        var commonItemType = typeof(CommonItem);
+        var commonItemParams = new object[] { itemName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus };
 
-        result = string.Format(Constants.ItemCreateMessage, newItem.Name, heroName);
+        IItem commonItem = (IItem)Activator.CreateInstance(commonItemType, commonItemParams);
+
+        // Add Item to Hero
+        this.heroes[heroName].AddCommonItem(commonItem);
+
+        // Get result
+        result = string.Format(Constants.ItemCreateMessage,
+                                commonItem.Name, heroName);
+
         return result;
     }
 
-    public string CreateGame()
+    public string AddRecipeItem(IList<string> arguments)
     {
-        StringBuilder result = new StringBuilder();
+        string result = null;
 
-        foreach (var hero in heroes)
-        {
-            result.AppendLine(hero.Key);
-        }
+        // Parse input
+        string itemName = arguments[0];
+        string heroName = arguments[1];
+        int strengthBonus = int.Parse(arguments[2]);
+        int agilityBonus = int.Parse(arguments[3]);
+        int intelligenceBonus = int.Parse(arguments[4]);
+        int hitPointsBonus = int.Parse(arguments[5]);
+        int damageBonus = int.Parse(arguments[6]);
 
-        return result.ToString();
+        var requiredItems = arguments.Skip(7).ToList();
+
+        // Create Item
+        var recipeType = typeof(RecipeItem);
+        var recipeParams = new object[] { itemName, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus, requiredItems };
+
+        IRecipe recipe = (IRecipe)Activator.CreateInstance(recipeType, recipeParams);
+
+        // Add Item to Hero
+        this.heroes[heroName].AddRecipe(recipe);
+
+        // Get result
+        result = string.Format(Constants.RecipeCreatedMessage,
+                                recipe.Name, heroName);
+
+        return result;
     }
 
-    public string Inspect(List<String> arguments)
+    public string Inspect(IList<string> arguments)
     {
         string heroName = arguments[0];
 
         return this.heroes[heroName].ToString();
     }
 
-    //Само Батман знае как работи това
-    public static void GenerateResult()
+    public string Quit(IList<string> arguments)
     {
-        const string PropName = "_connectionString";
+        return QuitSummary();
+    }
 
-        var type = typeof(HeroCommand);
+    private string QuitSummary()
+    {
+        var builder = new StringBuilder();
 
-        FieldInfo fieldInfo = null;
-        PropertyInfo propertyInfo = null;
-        while (fieldInfo == null && propertyInfo == null && type != null)
+        var heroesDescStats = this.heroes.Values
+                            .OrderByDescending(h => h.PrimaryStats)
+                            .ThenByDescending(h => h.SecondaryStats)
+                            .ToList();
+
+        for (int i = 0; i < heroesDescStats.Count; i++)
         {
-            fieldInfo = type.GetField(PropName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            if (fieldInfo == null)
+            // Hero stats
+            var hero = heroesDescStats[i];
+
+            builder
+                .AppendLine($"{i + 1}. {hero.GetType().Name}: {hero.Name}")
+                .AppendLine($"###HitPoints: {hero.HitPoints}")
+                .AppendLine($"###Damage: {hero.Damage}")
+                .AppendLine($"###Strength: {hero.Strength}")
+                .AppendLine($"###Agility: {hero.Agility}")
+                .AppendLine($"###Intelligence: {hero.Intelligence}")
+                .Append("###Items: ");
+
+            // Items
+            var items = hero.Items;
+
+            if (items.Any())
             {
-                propertyInfo = type.GetProperty(PropName,
-                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                builder.AppendLine(string.Join(", ", items.Select(x => x.Name)));
             }
-
-            type = type.BaseType;
+            else
+            {
+                builder.AppendLine("None");
+            }
         }
-    }
 
-    public static void DontTouchThisMethod()
-    {
-        //това не трябва да го пипаме, че ако го махнем ще ни счупи цялата логика
-        var l = new List<string>();
-        var m = new HeroManager();
-        HeroCommand cmd = new HeroCommand(l, m);
-        var str = "Execute";
-        Console.WriteLine(str);
-    }
-
-    public string Quit(IList<string> args)
-    {
-        throw new NotImplementedException();
+        return builder.ToString().Trim();
     }
 }

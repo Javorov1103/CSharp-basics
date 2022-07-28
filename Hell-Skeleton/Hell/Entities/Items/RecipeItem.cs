@@ -1,37 +1,15 @@
-﻿using Hell.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace Hell.Entities.Items
+public class RecipeItem : CommonItem, IRecipe
 {
-    public class RecipeItem : IRecipe
+    private IList<string> requiredItems;
+
+    public RecipeItem(string name, int strengthBonus, int agilityBonus, int intelligenceBonus,
+        int hitPointsBonus, int damageBonus, IList<string> requiredItems)
+        : base(name, strengthBonus, agilityBonus, intelligenceBonus, hitPointsBonus, damageBonus)
     {
-        private string name;
-        private IList<string> requiredItems;
-
-        public IList<string> RequiredItems
-        {
-            get { return requiredItems; }
-            set { requiredItems = value; }
-        }
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        public int StrengthBonus => throw new NotImplementedException();
-
-        public int AgilityBonus => throw new NotImplementedException();
-
-        public int IntelligenceBonus => throw new NotImplementedException();
-
-        public int HitPointsBonus => throw new NotImplementedException();
-
-        public int DamageBonus => throw new NotImplementedException();
+        this.requiredItems = requiredItems;
     }
+
+    public IList<string> RequiredItems => this.requiredItems;
 }
