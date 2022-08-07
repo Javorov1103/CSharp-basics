@@ -9,6 +9,7 @@
     using Forum.Data;
     using Forum.App.Services;
     using Forum.App.Models;
+    using Forum.App.Commands;
 
     public class StartUp
     {
@@ -21,6 +22,8 @@
             Engine engine = new Engine(menu);
             engine.Run();
 
+           
+           
 
         }
 

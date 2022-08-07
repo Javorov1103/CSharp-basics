@@ -33,7 +33,16 @@
 
             Category category = this.EnsureCategory(postCategory);
 
-            int postId = this.forumData.Posts.Any() ? this.forumData.Posts.Last().Id + 1 : 1;
+            //int postId = this.forumData.Posts.Any() ? this.forumData.Posts.Last().Id + 1 : 1;
+            int postId = 0;
+            if (this.forumData.Posts.Any())
+            {
+                postId=this.forumData.Posts.Last().Id + 1;
+            }
+            else
+            {
+                postId= 1;
+            }
 
             User author = this.userService.GetUserById(userId);
 
