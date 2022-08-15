@@ -7,14 +7,19 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             Counter c = new Counter(new Random().Next(10));
+            c.Name = "First counter";
+            Counter c2 = new Counter(new Random().Next(10));
+            c2.Name = "Second Counter";
+
             c.ThresholdReached += c_ThresholdReached;
-            c.ThresholdReached += b_ThresholdReached;
+            c2.ThresholdReached += c_ThresholdReached;
 
             Console.WriteLine("press 'a' key to increase total");
             while (Console.ReadKey(true).KeyChar == 'a')
             {
                 Console.WriteLine("adding one");
                 c.Add(1);
+                c2.Add(1);
             }
         }
 
@@ -22,12 +27,6 @@ namespace ConsoleApplication1
         {
             Console.WriteLine("The threshold was reached.");
             //Environment.Exit(0);
-        }
-
-        static void b_ThresholdReached(object sender, EventArgs e)
-        {
-            Console.WriteLine("Second abonat");
-            Environment.Exit(0);
         }
     }
 
@@ -51,5 +50,8 @@ namespace ConsoleApplication1
         }
 
         public event EventHandler ThresholdReached;
+
+        public string Name { get; set; }
+
     }
 }
