@@ -56,3 +56,33 @@ body {
     text-decoration: line-through;
     color: red;
 }
+
+.pretty-button {
+
+    margin: 10px 2px;
+
+    padding: 5px 20px;
+
+    border-radius: 15px;
+
+    background-color: #0093D5;
+
+    border: none;
+
+    color: #fff;
+
+    text-align: center;
+
+    display: inline-block;
+
+    font-size: small;
+
+}
+
+.pretty-button:hover {
+
+    cursor: pointer;
+
+    opacity: 0.75;
+
+}
