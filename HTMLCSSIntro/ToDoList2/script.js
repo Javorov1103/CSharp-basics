@@ -2,10 +2,12 @@ var addBtn = document.getElementById('add-button');
 
 addBtn.addEventListener('click', addTask)
 
+var clearBtn = document.getElementById('clear-completed-button')
+clearBtn.addEventListener('click', clearCompleted)
 function addTask() {
-    var taskInput = document.getElementById('todo-entry-box')
+  var taskInput = document.getElementById('todo-entry-box')
   var inputValue = taskInput.value;
-  
+
   var labelElement = document.createElement('label');
   labelElement.classList.add('task')
 
@@ -28,4 +30,17 @@ function addTask() {
   containerElement.appendChild(labelElement)
 
   taskInput.value = ''
+}
+
+function clearCompleted() {
+  var labelElements = document.getElementsByClassName("task")
+  
+  for (let index = 0; index < labelElements.length; index++) {
+    const element = labelElements[index];
+    var input = element.children[0];
+
+    if (input.checked === true) {
+      element.remove()
+    }
+  }
 }

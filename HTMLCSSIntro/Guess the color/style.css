@@ -1,0 +1,45 @@
+.colorButton{
+	background-color: rgb(255,0,0);  /*задаваме червен фон */
+	width: 50px;  /*задаваме ширина*/
+	height: 50px; /* задаваме височина */
+	border: none; /* премахваме рамката */
+	border-radius: 50%; /*добавяме заобляне */
+	box-shadow: none; /*премахваме сянката*/
+	margin: 10px; /*задаваме външно отстояние отгоре */
+}
+
+#buttonWrapper{
+	width: 100%; /*задаваме ширина */
+	display: flex; /*как да се показва на екрана */
+	flex-wrap: wrap; /*как да е подредено */
+	justify-content: space-around; /*как да е подравнено */
+	margin: 0 auto; /*външно отстояние */
+}
+
+h1{
+	text-align: center; /*централно подравнен текст */
+}
+
+#colorValue{
+	margin: 0 auto; /*външно отстояние */
+	text-align: center; /*центриран тескт */
+}
+#answer{
+	margin: 0 auto;
+	text-align: center;
+}
+ 
+#reset{
+	margin: 0 auto;
+	text-align: center;
+}
+
+#reset-button{
+	padding: 10px;  /*вътрешно отстояние */
+	background: none; /*фон */
+	border: 1px solid #000; /*плътна рамка с дебелина 1px и черен цвят */
+	margin: 10px;
+}
+
+
+

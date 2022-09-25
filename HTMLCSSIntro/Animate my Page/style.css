@@ -42,3 +42,38 @@
     transform: translateY(-50%);
     z-index: 2;
 }
+
+.bubbles {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: absolute;
+    bottom: -70px;
+}
+
+.bubbles img {
+    width: 50px;
+    animation: bubble 15s linear infinite;
+}
+
+@keyframes bubble {
+    0%
+    {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    50% 
+    {
+        opacity: 1;
+    }
+    70%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        opacity: 0;
+        transform: translateY(-80vh);
+    }
+}
