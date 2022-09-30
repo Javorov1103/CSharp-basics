@@ -1,0 +1,137 @@
+body {
+    background-color: #ccf5f5;
+}
+
+#gameholder {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#title {
+    width: 600px;
+    height: 150px;
+    background-image: url('images/penguin_title.png');
+}
+
+.peng {
+    width: 200px;
+    height: 200px;
+    float: left;
+}
+
+.pinguine1 {
+    background-image: url('images/mound_1.png');
+}
+
+.pinguine1:hover {
+    background-image: url('images/mound_1_hover.png');
+    cursor: pointer;
+}
+
+.pinguine1:active {
+    background-image: url('images/penguin_1.png');
+}
+
+.pinguine2 {
+    background-image: url('images/mound_2.png');
+}
+
+.pinguine2:hover {
+    background-image: url('images/mound_2_hover.png');
+    cursor: pointer;
+}
+
+.pinguine2:active {
+    background-image: url('images/penguin_2.png');
+}
+
+.pinguine3 {
+    background-image: url('images/mound_3.png');
+}
+
+.pinguine3:hover {
+    background-image: url('images/mound_3_hover.png');
+    cursor: pointer;
+}
+
+.pinguine3:active {
+    background-image: url('images/penguin_3.png');
+}
+
+.pinguine4 {
+    background-image: url('images/mound_4.png');
+}
+
+.pinguine4:hover {
+    background-image: url('images/mound_4_hover.png');
+    cursor: pointer;
+}
+
+.pinguine4:active {
+    background-image: url('images/penguin_4.png');
+}
+.pinguine5 {
+    background-image: url('images/mound_5.png');
+}
+
+.pinguine5:hover {
+    background-image: url('images/mound_5_hover.png');
+    cursor: pointer;
+}
+
+.pinguine5:active {
+    background-image: url('images/penguin_5.png');
+}
+
+.pinguine6 {
+    background-image: url('images/mound_6.png');
+}
+
+.pinguine6:hover {
+    background-image: url('images/mound_6_hover.png');
+    cursor: pointer;
+}
+
+.pinguine6:active {
+    background-image: url('images/penguin_6.png');
+}
+
+.pinguine7 {
+    background-image: url('images/mound_7.png');
+}
+
+.pinguine7:hover {
+    background-image: url('images/mound_37_hover.png');
+    cursor: pointer;
+}
+
+.pinguine7:active {
+    background-image: url('images/penguin_7.png');
+}
+
+.pinguine8 {
+    background-image: url('images/mound_8.png');
+}
+
+.pinguine8:hover {
+    background-image: url('images/mound_8_hover.png');
+    cursor: pointer;
+}
+
+.pinguine8:active {
+    background-image: url('images/penguin_8.png');
+}
+
+.yeti {
+    background-image: url('images/mound_9.png');
+}
+
+.yeti:hover {
+    background-image: url('images/mound_9_hover.png');
+    cursor: pointer;
+}
+
+.yeti:active {
+    background-image: url('images/yeti.png');
+}
