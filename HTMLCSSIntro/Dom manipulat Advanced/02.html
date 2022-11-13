@@ -1,0 +1,37 @@
+<h1>List of Items</h1>
+<ul id="items"></ul>
+<input type="text" id="newText" />
+<input type="button" value="Add" onclick="addItem()">
+<script>
+    var counter = 0;
+    function addItem() {
+        var inputValue = document.getElementById('newText').value;
+        var liEl = document.createElement('li')
+        liEl.classList.add(`item-${counter}`)
+
+        var spanEl = document.createElement('span');
+        spanEl.textContent = inputValue + " ";
+
+        var aEl = document.createElement('a');
+        aEl.textContent = "Delete"
+        aEl.setAttribute('href', '#')
+        aEl.classList.add(`item-${counter}`)
+        aEl.addEventListener('click', deleteItem)
+
+        counter++;
+
+        liEl.appendChild(spanEl);
+        liEl.appendChild(aEl);
+
+
+        var list = document.getElementById('items');
+        list.appendChild(liEl);
+
+        function deleteItem() {
+           var className = this.classList[0]
+           elements = document.getElementsByClassName(className);
+           var liElDelete = elements[0]
+           liElDelete.remove()
+        }
+    }
+</script>
