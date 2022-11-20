@@ -6,11 +6,15 @@
 }
 @model List<Cat>
 
-   <h1>WORKING</h1>
-   @for (int i = 0; i < Model.Count; i++)
+   <h1>Fluffy list cats</h1>
+   <ul>
+       @for (int i = 0; i < Model.Count; i++)
     {
         var currentCat = Model[i];
-        @Html.Raw($"<div>{currentCat.Name}</div>")
+        <li><a>@currentCat.Name</a></li>
     }
+   </ul>
+  <a asp-controller="Cat" asp-action="Add" class="btn btn-primary">Add</a>
+   
 
 

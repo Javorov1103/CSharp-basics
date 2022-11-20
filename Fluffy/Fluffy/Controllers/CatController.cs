@@ -1,4 +1,5 @@
 ﻿using Fluffy.Contracts;
+using Fluffy.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fluffy.Controllers
@@ -16,6 +17,20 @@ namespace Fluffy.Controllers
         {
             var cats = this.catService.GetAll();
             return View(cats);
+        }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        public IActionResult Create(Cat catToBeCreated)
+        {
+            this.catService.Create(catToBeCreated);
+
+
+
+            return RedirectToAction("Index");
         }
     }
 }
