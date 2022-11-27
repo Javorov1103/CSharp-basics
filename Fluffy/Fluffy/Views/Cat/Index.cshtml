@@ -11,7 +11,7 @@
        @for (int i = 0; i < Model.Count; i++)
     {
         var currentCat = Model[i];
-        <li><a>@currentCat.Name</a></li>
+        <li><a asp-controller="Cat" asp-action="Details" asp-route-id="@currentCat.Id">@currentCat.Name</a></li>
     }
    </ul>
   <a asp-controller="Cat" asp-action="Add" class="btn btn-primary">Add</a>

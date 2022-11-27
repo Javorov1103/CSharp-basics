@@ -28,9 +28,14 @@ namespace Fluffy.Controllers
         {
             this.catService.Create(catToBeCreated);
 
-
-
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Details(int id)
+        {
+            Cat cat = this.catService.GetCatById(id);
+
+            return View(cat);
         }
     }
 }

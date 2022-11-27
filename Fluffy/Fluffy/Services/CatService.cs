@@ -30,5 +30,17 @@ namespace Fluffy.Services
 
             this.dbContext.SaveChanges();
         }
+
+        public Cat GetCatById(int id)
+        {
+            var cat = this.dbContext.Cats.Find(id);
+
+            if (cat == null)
+            {
+                throw new ArgumentException("There is no cat with such id!");
+            }
+
+            return cat;
+        }
     }
 }
