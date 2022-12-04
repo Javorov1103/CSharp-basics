@@ -6,11 +6,11 @@ namespace Library.Services
 {
     public class BooksService : IBooksService
     {
-        private readonly LibraryDbContext dbContext;
+        private LibraryDbContext _dbContext;
 
         public BooksService(LibraryDbContext dbContext)
         {
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
         }
 
         public void DeleteBook(int id)
@@ -25,7 +25,22 @@ namespace Library.Services
 
         public IList<Book> GetBooks()
         {
-            return this.dbContext.Books.ToList();
+            var books = _dbContext.Books.Join(
+                _dbContext.Authors,
+                b => b.AuthorId,
+                a => a.Id,
+                (b,a) => new Book() 
+                {
+                    Id = b.Id,
+                    AuthorId = b.AuthorId,
+                    Title = b.Title,
+                    ShortDescription = b.ShortDescription,
+                    CoverImageURL  =b.CoverImageURL,
+                    Author = a
+                }
+                );
+
+            return books.ToList();
         }
 
         public IList<Book> GetBooksByAuthor(int authorId)
@@ -36,6 +51,15 @@ namespace Library.Services
         public void UpdateBook(Book book)
         {
             throw new NotImplementedException();
+        }
+
+
+        public void Add(Book book)
+        {
+
+            this._dbContext.Books.Add(book);
+
+            this._dbContext.SaveChanges();
         }
     }
 }

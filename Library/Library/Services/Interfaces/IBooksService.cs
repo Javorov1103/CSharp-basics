@@ -13,5 +13,7 @@ namespace Library.Services.Interfaces
         void DeleteBook(int id);
 
         void UpdateBook(Book book);
+
+        void Add(Book book);
     }
 }

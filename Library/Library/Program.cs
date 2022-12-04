@@ -7,11 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IBooksService, BooksService>();
 builder.Services.AddDbContext<LibraryDbContext>(options =>
 {
     options.UseSqlServer(@"Server=DESKTOP-OSKT1GA\SQLEXPRESS;Database=BookLibrary;Trusted_Connection=True;TrustServerCertificate=True");
 });
+builder.Services.AddTransient<IBooksService, BooksService>();
 
 var app = builder.Build();
 
@@ -32,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Book}/{action=Index}/{id?}");
 
 app.Run();

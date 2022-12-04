@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20221127101119_Initial")]
+    [Migration("20221204092527_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -38,7 +38,7 @@ namespace Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Author");
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("Library.Models.Book", b =>
@@ -67,7 +67,7 @@ namespace Library.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Book");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Library.Models.Borrower", b =>
@@ -86,7 +86,7 @@ namespace Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Borrower");
+                    b.ToTable("Borrowers");
                 });
 
             modelBuilder.Entity("Library.Models.BorrowersBooks", b =>

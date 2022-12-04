@@ -35,7 +35,7 @@ namespace Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Author");
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("Library.Models.Book", b =>
@@ -64,7 +64,7 @@ namespace Library.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Book");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Library.Models.Borrower", b =>
@@ -83,7 +83,7 @@ namespace Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Borrower");
+                    b.ToTable("Borrowers");
                 });
 
             modelBuilder.Entity("Library.Models.BorrowersBooks", b =>

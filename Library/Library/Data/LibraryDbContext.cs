@@ -14,11 +14,11 @@ namespace Library.Data
         {
         }
 
-        public DbSet<Book>? Books;
+        public DbSet<Book> Books { get; set; }
 
-        public DbSet<Author>? Authors;
+        public DbSet<Author> Authors { get; set; }
 
-        public DbSet<Borrower>? Borrowers;
+        public DbSet<Borrower> Borrowers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -36,6 +36,10 @@ namespace Library.Data
                 .HasKey(b => new { b.BookId, b.BorrowerId });
 
             base.OnModelCreating(modelBuilder);
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }

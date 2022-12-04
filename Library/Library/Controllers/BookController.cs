@@ -14,9 +14,14 @@ namespace Library.Controllers
         }
         public IActionResult Index()
         {
-            var books = this.booksService.GetBooks().ToList();
+            var books = this.booksService.GetBooks();
 
             return View(books);
+        }
+
+        public IActionResult Add()
+        {
+            return View();
         }
     }
 }
