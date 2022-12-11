@@ -33,6 +33,7 @@ namespace Library.Controllers
         public IActionResult AddBook(Book book)
         {
             //Adding a book into the DB
+            this.booksService.Add(book);
 
             return RedirectToAction("Index");
         }
