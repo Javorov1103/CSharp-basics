@@ -3,4 +3,49 @@
 *@
 @{
 }
-<h1>Test</h1>
+@{
+    ViewData["Title"] = "Add Book";
+}
+@model Book
+
+<h2>@ViewData["Title"]</h2>
+<form method="post">
+    <div class="form-group row">
+        <label asp-for="Title" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Title" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="ShortDescription" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <textarea name="Description" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Author" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Author" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="CoverImageURL" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="CoverImageURL" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10 offset-2">
+            <input type="submit" asp-controller="Books" asp-action="AddBook" class="btn btn-success" value="Add book" >
+            <a asp-controller="Books"
+                   asp-action="All"
+                   class="btn btn-outline-primary" style="margin: 5px">
+                    Cancel
+                </a>
+        </div>
+    </div>
+</form>
