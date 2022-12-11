@@ -1,4 +1,5 @@
-﻿using Library.Services;
+﻿using Library.Models;
+using Library.Services;
 using Library.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,6 +23,13 @@ namespace Library.Controllers
         public IActionResult Add()
         {
             return View();
+        }
+
+        public IActionResult AddBook(Book book)
+        {
+            //Adding a book into the DB
+
+            return RedirectToAction("Index");
         }
     }
 }
