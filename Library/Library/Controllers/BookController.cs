@@ -24,7 +24,9 @@ namespace Library.Controllers
 
         public IActionResult Add()
         {
-            
+            var authors = this.authorsService.GetAuthors();
+            ViewBag.Authors = authors;
+
             return View();
         }
 
