@@ -37,5 +37,14 @@ namespace Library.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Details(int id)
+        {
+            //Take the book with the current id from the DB, and pass it 
+            // To the VIEW
+            var book = this.booksService.GetBook(id);
+
+            return View(book);
+        }
     }
 }

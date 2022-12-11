@@ -20,7 +20,9 @@ namespace Library.Services
 
         public Book GetBook(int id)
         {
-            throw new NotImplementedException();
+            var book = this._dbContext.Books.Find(id);
+
+            return book;
         }
 
         public IList<Book> GetBooks()
@@ -29,13 +31,13 @@ namespace Library.Services
                 _dbContext.Authors,
                 b => b.AuthorId,
                 a => a.Id,
-                (b,a) => new Book() 
+                (b, a) => new Book()
                 {
                     Id = b.Id,
                     AuthorId = b.AuthorId,
                     Title = b.Title,
                     ShortDescription = b.ShortDescription,
-                    CoverImageURL  =b.CoverImageURL,
+                    CoverImageURL = b.CoverImageURL,
                     Author = a
                 }
                 );
