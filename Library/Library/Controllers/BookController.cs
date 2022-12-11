@@ -8,10 +8,12 @@ namespace Library.Controllers
     public class BookController : Controller
     {
         private readonly IBooksService booksService;
+        private readonly IAuthorsService authorsService;
 
-        public BookController(IBooksService booksService)
+        public BookController(IBooksService booksService, IAuthorsService authorsService)
         {
             this.booksService = booksService;
+            this.authorsService = authorsService;
         }
         public IActionResult Index()
         {

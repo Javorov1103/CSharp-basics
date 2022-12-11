@@ -12,6 +12,7 @@ builder.Services.AddDbContext<LibraryDbContext>(options =>
     options.UseSqlServer(@"Server=DESKTOP-OSKT1GA\SQLEXPRESS;Database=BookLibrary;Trusted_Connection=True;TrustServerCertificate=True");
 });
 builder.Services.AddTransient<IBooksService, BooksService>();
+builder.Services.AddTransient<IAuthorsService, AuthorsService>();
 
 var app = builder.Build();
 
