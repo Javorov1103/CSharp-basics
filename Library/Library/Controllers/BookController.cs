@@ -17,7 +17,7 @@ namespace Library.Controllers
         }
         public IActionResult Index()
         {
-            var books = this.booksService.GetBooks();
+            IList<Book> books = this.booksService.GetBooks();
 
             return View(books);
         }
