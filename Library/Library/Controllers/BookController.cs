@@ -10,7 +10,6 @@ namespace Library.Controllers
     {
         private readonly IBooksService booksService;
         private readonly IAuthorsService authorsService;
-        private readonly IMemoryCache cache;
 
         public BookController(IBooksService booksService, IAuthorsService authorsService)
         {
@@ -47,6 +46,13 @@ namespace Library.Controllers
             var book = this.booksService.GetBook(id);
 
             return View(book);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            //Delete the book with the passed id
+
+            return RedirectToAction("Index");
         }
     }
 }
