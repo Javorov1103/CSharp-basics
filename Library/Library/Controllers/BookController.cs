@@ -52,6 +52,24 @@ namespace Library.Controllers
         {
             //Delete the book with the passed id
 
+            this.booksService.DeleteBook(id);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Book book = this.booksService.GetBook(id);
+            var authors = this.authorsService.GetAuthors();
+            ViewBag.Authors = authors;
+
+            return View(book);
+        }
+
+        public IActionResult EditBook(Book book)
+        {
+            this.booksService.UpdateBook(book);
+
             return RedirectToAction("Index");
         }
     }

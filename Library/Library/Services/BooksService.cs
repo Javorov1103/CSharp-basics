@@ -15,7 +15,13 @@ namespace Library.Services
 
         public void DeleteBook(int id)
         {
-            throw new NotImplementedException();
+            var book = _dbContext.Books.Find(id);
+
+            if (book != null)
+            {
+                this._dbContext.Books.Remove(book);
+                this._dbContext.SaveChanges();
+            }
         }
 
         public Book GetBook(int id)
@@ -34,9 +40,9 @@ namespace Library.Services
                     Author = a
                 }
                 )?.FirstOrDefault(x => x.Id == id);
-           
 
-            if(book == null)
+
+            if (book == null)
             {
                 throw new ArgumentException($"There is no book with id: {id}");
             }
@@ -71,7 +77,9 @@ namespace Library.Services
 
         public void UpdateBook(Book book)
         {
-            throw new NotImplementedException();
+            this._dbContext.Books.Update(book);
+
+            this._dbContext.SaveChanges();
         }
 
 
