@@ -2,6 +2,7 @@
 using Library.Services;
 using Library.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Library.Controllers
 {
@@ -9,6 +10,7 @@ namespace Library.Controllers
     {
         private readonly IBooksService booksService;
         private readonly IAuthorsService authorsService;
+        private readonly IMemoryCache cache;
 
         public BookController(IBooksService booksService, IAuthorsService authorsService)
         {

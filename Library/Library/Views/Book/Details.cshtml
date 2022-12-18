@@ -6,14 +6,38 @@
 }
 @model Book
 
-<div class="profile-container d-flex">
-    <div class="image-container col-sm-3">
-        <img src="@Model.CoverImageURL"/>
+ <div id="main-content" class="blog-page">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-lg-8 col-md-12 offset-md-2">
+                    <div class="card single_post">
+                        <div class="body">
+                            <div class="img-post">
+                                <img class="d-block img-fluid mx-auto" src="@Model.CoverImageURL" alt="@Model.Title book cover image">
+                            </div>
+                            <h3 class="text-center" style="padding: 10px">
+                            @Model.Title by  @Model.Author?.Name
+                        </h3>
+                            <h5 style="margin-top: 30px">@Model.ShortDescription</h5>
+                        </div>
+                        <div class="single_post_footer_special">
+                            
+                                <a asp-controller="Books"
+                                   asp-action="EditBook"
+                                   asp-route-bookId="@Model.Id"
+                                   class="btn btn-outline-warning">
+                                    Edit
+                                </a>
+                                <a asp-controller="Books"
+                                   asp-action="Delete"
+                                   asp-route-bookId="@Model.Id"
+                                   class="btn btn-outline-danger" style="margin: 10px">
+                                    Delete
+                                </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="info-container col-sm-9">
-        <h2>@Model.Title</h2>
-        <h3>@Model.Author?.Name</h3>
-        <p>@Model.ShortDescription</p>
-    </div>
-
-</div>

@@ -20,7 +20,26 @@ namespace Library.Services
 
         public Book GetBook(int id)
         {
-            var book = this._dbContext.Books.Find(id);
+            Book? book = this._dbContext.Books.Join(
+                _dbContext.Authors,
+                b => b.AuthorId,
+                a => a.Id,
+                (b, a) => new Book()
+                {
+                    Id = b.Id,
+                    AuthorId = b.AuthorId,
+                    Title = b.Title,
+                    ShortDescription = b.ShortDescription,
+                    CoverImageURL = b.CoverImageURL,
+                    Author = a
+                }
+                )?.FirstOrDefault(x => x.Id == id);
+           
+
+            if(book == null)
+            {
+                throw new ArgumentException($"There is no book with id: {id}");
+            }
 
             return book;
         }
