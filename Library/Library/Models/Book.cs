@@ -20,5 +20,7 @@ namespace Library.Models
         public string? CoverImageURL { get; set; }
 
         public IList<BorrowersBooks>? Borrowers { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Library.Data;
 using Library.Models;
 using Library.Services.Interfaces;
+using Microsoft.Data.SqlClient;
 
 namespace Library.Services
 {
@@ -85,10 +86,36 @@ namespace Library.Services
 
         public void Add(Book book)
         {
+            string query = $@"
+                INSERT INTO [dbo].[Books]
+                           ([Title]
+                           ,[ShortDescription]
+                           ,[AuthorId]
+                           ,[CoverImageURL]
+                           ,[Price])
+                     VALUES
+                           (@Title
+                           ,@ShortDescr
+                           ,@AuthorId
+                           ,@URL
+                           ,@Price)
+            ";
 
-            this._dbContext.Books.Add(book);
+            using (var connection = new SqlConnection(@""))
+            {
+                //using (var commmand = new SqlCommand())
+                //{
+                //    commmand.CommandText = query;
+                //    commmand.Parameters.Add(new SqlParameter(book.Title));
 
-            this._dbContext.SaveChanges();
+
+                //}
+                connection.Execute(query, book);
+            }
+
+            //this._dbContext.Books.Add(book);
+
+            //this._dbContext.SaveChanges();
         }
     }
 }
