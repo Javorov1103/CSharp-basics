@@ -78,9 +78,37 @@ namespace Library.Services
 
         public void UpdateBook(Book book)
         {
-            this._dbContext.Books.Update(book);
+            string query = @"
 
-            this._dbContext.SaveChanges();
+                    UPDATE Books SET
+                    Title = @Title,
+                    ShortDescription = @ShortDescription,
+                    CoverImageURL = @CoverImageURL,
+                    Price = @Price
+                    WHERE Id = @Id
+                    ";
+
+            using (SqlConnection connection = new SqlConnection(@"Server=DESKTOP-OSKT1GA\SQLEXPRESS;Database=BookLibrary;Trusted_Connection=True;TrustServerCertificate=True"))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.CommandText = query;
+                    command.Connection = connection;
+                    command.Parameters.AddWithValue("@Title",book.Title);
+                    command.Parameters.AddWithValue("@ShortDescription",book.ShortDescription);
+                    command.Parameters.AddWithValue("@CoverImageURL", book.CoverImageURL ?? "");
+                    command.Parameters.AddWithValue("@Price", book.Price);
+                    command.Parameters.AddWithValue("@Id", book.Id);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
+                }
+            }
+
+            //this._dbContext.Books.Update(book);
+
+            //this._dbContext.SaveChanges();
         }
 
 
@@ -101,16 +129,25 @@ namespace Library.Services
                            ,@Price)
             ";
 
-            using (var connection = new SqlConnection(@""))
+            using (var connection = new SqlConnection(@"Server=DESKTOP-OSKT1GA\SQLEXPRESS;Database=BookLibrary;Trusted_Connection=True;TrustServerCertificate=True"))
             {
-                //using (var commmand = new SqlCommand())
-                //{
-                //    commmand.CommandText = query;
-                //    commmand.Parameters.Add(new SqlParameter(book.Title));
+                using (var commmand = new SqlCommand())
+                {
+                    commmand.CommandText = query;
+                    commmand.Connection = connection;
+                    commmand.Parameters.Add(new SqlParameter("@Title", book.Title));
+                    commmand.Parameters.Add(new SqlParameter("@ShortDescr", book.ShortDescription));
+                    commmand.Parameters.Add(new SqlParameter("@AuthorId", book.AuthorId));
+                    commmand.Parameters.Add(new SqlParameter("@URL", book.CoverImageURL ?? ""));
+                    commmand.Parameters.Add(new SqlParameter("@Price", book.Price ));
 
+                    connection.Open();
+                    commmand.ExecuteScalar();
 
-                //}
-                connection.Execute(query, book);
+                    connection.Close();
+
+                }
+                //connection.Execute(query, book);
             }
 
             //this._dbContext.Books.Add(book);
