@@ -4,6 +4,10 @@ namespace Library.Models
 {
     public class Book
     {
+        public Book()
+        {
+            Author = new Author();
+        }
         public int Id { get; set; }
 
         [Required]

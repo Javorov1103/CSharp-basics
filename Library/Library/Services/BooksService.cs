@@ -16,36 +16,89 @@ namespace Library.Services
 
         public void DeleteBook(int id)
         {
-            var book = _dbContext.Books.Find(id);
+            //var book = _dbContext.Books.Find(id);
 
-            if (book != null)
+            //if (book != null)
+            //{
+            //    this._dbContext.Books.Remove(book);
+            //    this._dbContext.SaveChanges();
+            //}
+
+            string query =
+                @"DELETE FROM Books
+                    WHERE Id = @Id";
+
+
+            using (var connection = new SqlConnection(LibraryContext.ConnectionString))
             {
-                this._dbContext.Books.Remove(book);
-                this._dbContext.SaveChanges();
+                using (var cmd = connection.CreateCommand())
+                {
+                    connection.Open();
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("Id",id);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
             }
+
         }
 
         public Book GetBook(int id)
         {
-            Book? book = this._dbContext.Books.Join(
-                _dbContext.Authors,
-                b => b.AuthorId,
-                a => a.Id,
-                (b, a) => new Book()
-                {
-                    Id = b.Id,
-                    AuthorId = b.AuthorId,
-                    Title = b.Title,
-                    ShortDescription = b.ShortDescription,
-                    CoverImageURL = b.CoverImageURL,
-                    Author = a
-                }
-                )?.FirstOrDefault(x => x.Id == id);
+            //Book? book = this._dbContext.Books.Join(
+            //    _dbContext.Authors,
+            //    b => b.AuthorId,
+            //    a => a.Id,
+            //    (b, a) => new Book()
+            //    {
+            //        Id = b.Id,
+            //        AuthorId = b.AuthorId,
+            //        Title = b.Title,
+            //        ShortDescription = b.ShortDescription,
+            //        CoverImageURL = b.CoverImageURL,
+            //        Author = a
+            //    }
+            //    )?.FirstOrDefault(x => x.Id == id);
 
 
-            if (book == null)
+            //if (book == null)
+            //{
+            //    throw new ArgumentException($"There is no book with id: {id}");
+            //}
+            Book book = new Book();
+
+            var query = @"
+                SELECT
+                *
+                FROM
+                Books
+                LEFT JOIN Authors on Authors.Id = Books.AuthorId
+                WHERE Books.Id = @Id";
+
+            using (var connection = new SqlConnection(LibraryContext.ConnectionString))
             {
-                throw new ArgumentException($"There is no book with id: {id}");
+                using (var cmd = connection.CreateCommand())
+                {
+                    connection.Open();
+                    cmd.CommandText = query;
+                    cmd.Parameters.AddWithValue("Id", id);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        book.Id = reader.GetInt32(0);
+                        book.Title = reader.GetString(1);
+                        book.ShortDescription = reader.GetString(2);
+                        book.AuthorId = reader.GetInt32(3);
+                        book.CoverImageURL = reader.IsDBNull(4) ? null: reader.GetString(4);
+                        book.Price = reader.GetDecimal(5);
+                        //book.Author = new Author();
+                        book.Author.Id = reader.GetInt32(6);
+                        book.Author.Name = reader.GetString(7);
+                    }
+                    connection.Close();
+                }
             }
 
             return book;
@@ -94,8 +147,8 @@ namespace Library.Services
                 {
                     command.CommandText = query;
                     command.Connection = connection;
-                    command.Parameters.AddWithValue("@Title",book.Title);
-                    command.Parameters.AddWithValue("@ShortDescription",book.ShortDescription);
+                    command.Parameters.AddWithValue("@Title", book.Title);
+                    command.Parameters.AddWithValue("@ShortDescription", book.ShortDescription);
                     command.Parameters.AddWithValue("@CoverImageURL", book.CoverImageURL ?? "");
                     command.Parameters.AddWithValue("@Price", book.Price);
                     command.Parameters.AddWithValue("@Id", book.Id);
@@ -139,7 +192,7 @@ namespace Library.Services
                     commmand.Parameters.Add(new SqlParameter("@ShortDescr", book.ShortDescription));
                     commmand.Parameters.Add(new SqlParameter("@AuthorId", book.AuthorId));
                     commmand.Parameters.Add(new SqlParameter("@URL", book.CoverImageURL ?? ""));
-                    commmand.Parameters.Add(new SqlParameter("@Price", book.Price ));
+                    commmand.Parameters.Add(new SqlParameter("@Price", book.Price));
 
                     connection.Open();
                     commmand.ExecuteScalar();
