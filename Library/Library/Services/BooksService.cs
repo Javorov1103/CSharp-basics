@@ -87,6 +87,7 @@ namespace Library.Services
 
                     while (reader.Read())
                     {
+                        //Fetch / MAP the book
                         book.Id = reader.GetInt32(0);
                         book.Title = reader.GetString(1);
                         book.ShortDescription = reader.GetString(2);
@@ -106,22 +107,68 @@ namespace Library.Services
 
         public IList<Book> GetBooks()
         {
-            var books = _dbContext.Books.Join(
-                _dbContext.Authors,
-                b => b.AuthorId,
-                a => a.Id,
-                (b, a) => new Book()
-                {
-                    Id = b.Id,
-                    AuthorId = b.AuthorId,
-                    Title = b.Title,
-                    ShortDescription = b.ShortDescription,
-                    CoverImageURL = b.CoverImageURL,
-                    Author = a
-                }
-                );
+            List<Book> books = new List<Book>();
 
-            return books.ToList();
+            var query = @"
+                SELECT
+                *
+                FROM
+                Books
+                LEFT JOIN Authors on Authors.Id = Books.AuthorId
+                ";
+
+            using (var connection = new SqlConnection(LibraryContext.ConnectionString))
+            {
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = query;
+                    connection.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    //MAGIC happens
+                    while (reader.Read())
+                    {
+                        Book book = new Book();
+
+                        //Fetch / MAP the book
+                        book.Id = reader.GetInt32(0);
+                        book.Title = reader.GetString(1);
+                        book.ShortDescription = reader.GetString(2);
+                        book.AuthorId = reader.GetInt32(3);
+                        book.CoverImageURL = reader.IsDBNull(4) ? null : reader.GetString(4);
+                        book.Price = reader.GetDecimal(5);
+                        //book.Author = new Author();
+                        book.Author.Id = reader.GetInt32(6);
+                        book.Author.Name = reader.GetString(7);
+
+                        books.Add(book);
+
+                    }
+
+
+                    connection.Close();
+                }
+            }
+
+            return books;
+
+            //var books = _dbContext.Books.Join(
+            //    _dbContext.Authors,
+            //    b => b.AuthorId,
+            //    a => a.Id,
+            //    (b, a) => new Book()
+            //    {
+            //        Id = b.Id,
+            //        AuthorId = b.AuthorId,
+            //        Title = b.Title,
+            //        ShortDescription = b.ShortDescription,
+            //        CoverImageURL = b.CoverImageURL,
+            //        Author = a
+            //    }
+            //    );
+
+            //return books.ToList();
         }
 
         public IList<Book> GetBooksByAuthor(int authorId)
